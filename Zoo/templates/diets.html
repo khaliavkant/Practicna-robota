@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тварини та їх раціон</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Тварини та їх раціон</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Ім'я тварини</th>
+        <th>ID раціону</th>
+        <th>Назва раціону</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for diet in diets %}
+        <tr>
+            <td>{{ diet.name }}</td>
+            <td>{{ diet.diet_id }}</td>
+            <td>{{ diet.diet_name }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

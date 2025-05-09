@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список всіх тварин</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Список всіх тварин</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ім'я</th>
+        <th>Тип</th>
+        <th>Дата народження</th>
+        <th>Місце існування</th>
+        <th>Раціон</th>
+        <th>Доглядач</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for animal in animals %}
+        <tr>
+            <td>{{ animal.animal_id }}</td>
+            <td>{{ animal.name }}</td>
+            <td>{{ animal.type }}</td>
+            <td>{{ animal.birth_date }}</td>
+            <td>{{ animal.habitat }}</td>
+            <td>{{ animal.diet }}</td>
+            <td>{{ animal.caretaker }}</td>
+            <td>
+                <a href="{{ url_for('edit_animal', animal_id=animal.animal_id) }}">Редагувати</a>
+                <form method="POST" action="{{ url_for('delete_animal', animal_id=animal.animal_id) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити цю тварину?')">Видалити</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

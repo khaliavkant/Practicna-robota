@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Додати нову сімейну пару</title></head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<body>
+<h2>Додати нову сімейну пару</h2>
+<form method="POST">
+    Працівник 1:
+    <select name="employee1_id">
+        {% for employee in employees %}
+            <option value="{{ employee.employee_id }}">{{ employee.full_name }}</option>
+        {% endfor %}
+    </select><br>
+    Працівник 2:
+    <select name="employee2_id">
+        {% for employee in employees %}
+            <option value="{{ employee.employee_id }}">{{ employee.full_name }}</option>
+        {% endfor %}
+    </select><br>
+    Тип відносин: <input type="text" name="relation_type" required><br>
+    <button type="submit">Додати</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

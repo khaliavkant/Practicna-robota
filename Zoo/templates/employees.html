@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список працівників</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Список працівників</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Повне ім'я</th>
+        <th>Сімейний стан</th>
+        <th>Телефон</th>
+        <th>Дата народження</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+        <tr>
+            <td>{{ employee.employee_id }}</td>
+            <td>{{ employee.full_name }}</td>
+            <td>{{ employee.marital_status }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.birth_date }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete_employee', employee_id=employee.employee_id) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити цього працівника?')">Видалити</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

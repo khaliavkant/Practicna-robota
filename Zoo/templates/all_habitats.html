@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Всі тварини та їх регіони</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>Всі тварини та їх регіони</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Ім'я тварини</th>
+        <th>Регіон</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for habitat in habitats %}
+        <tr>
+            <td>{{ habitat.animal_name }}</td>
+            <td>{{ habitat.habitat_name }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

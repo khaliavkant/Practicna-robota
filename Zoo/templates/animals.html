@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пошук тварин</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Пошук тварин</h2>
+    <form method="POST">
+        Ім’я: <input type="text" name="name">
+        Тип:
+        <select name="type">
+            <option value="">--Всі--</option>
+            <option value="bird">Птах</option>
+            <option value="reptile">Рептилія</option>
+            <option value="other">Інше</option>
+        </select>
+        <button type="submit">Пошук</button>
+    </form>
+    
+    {% if animals %}
+    <h3>Результати пошуку</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Ім’я</th>
+                <th>Тип</th>
+                <th>Раціон</th>
+                <th>Тип раціону</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in animals %}
+            <tr>
+                <td>{{ a.name }}</td>
+                <td>{{ a.type }}</td>
+                <td>{{ a.diet }}</td>
+                <td>{{ a.diet_type }}</td>
+                <td>
+                    <a href="{{ url_for('edit_animal', animal_id=a.animal_id) }}">Редагувати</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><title>Додати нову тварину</title></head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<body>
+<h2>Додати нову тварину</h2>
+<form method="POST">
+    Ім’я: <input type="text" name="name" required><br>
+    Тип:
+    <select name="type">
+        <option value="bird">Птах</option>
+        <option value="reptile">Рептилія</option>
+        <option value="other">Інше</option>
+    </select><br>
+    Дата народження: <input type="date" name="birth_date"><br>
+    Місце існування:
+    <select name="habitat_id">
+        {% for habitat in habitats %}
+            <option value="{{ habitat.habitat_id }}">{{ habitat.name }}</option>
+        {% endfor %}
+    </select><br>
+    Раціон:
+    <select name="diet_id">
+        {% for diet in diets %}
+            <option value="{{ diet.diet_id }}">{{ diet.name }}</option>
+        {% endfor %}
+    </select><br>
+    Доглядач:
+    <select name="caretaker_id">
+        {% for employee in employees %}
+            <option value="{{ employee.employee_id }}">{{ employee.full_name }}</option>
+        {% endfor %}
+    </select><br>
+    Ветеринар:
+    <select name="vet_id">
+        {% for vet in veterinarians %}
+            <option value="{{ vet.vet_id }}">{{ vet.full_name }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Додати</button>
+</form>
+<a href="{{ url_for('index') }}" class="btn-home">На головну</a>
+</body>
+</html>
