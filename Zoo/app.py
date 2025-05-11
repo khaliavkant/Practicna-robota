@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 
@@ -226,9 +225,9 @@ def add_employee():
         cursor.execute("""
             INSERT INTO Employees (full_name, marital_status, phone, birth_date)
             VALUES (%s, %s, %s, %s)
-        """, (full_name, position, phone, birth_date))
+        """, (full_name, marital_status, phone, birth_date))  # Виправлено перемінну "position" на "marital_status"
         db.commit()
-        return redirect(url_for('employees'))
+        return redirect(url_for('employees'))  # Перехід до сторінки зі списком працівників
 
     return render_template('add_employee.html')
 
